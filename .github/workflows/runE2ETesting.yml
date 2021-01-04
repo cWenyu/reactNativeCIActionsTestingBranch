@@ -1,8 +1,8 @@
-name: E2E Testing in Android on ubuntu
+name: E2E Testing in Android on macOS
 on:
   push:
     branches:
-      - 32701_CI_pipLine
+      - master
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -15,7 +15,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          ref: 32701_CI_pipLine
+          ref: master
       - name: Clean Packages
         run: |
           cd mobile_ui
