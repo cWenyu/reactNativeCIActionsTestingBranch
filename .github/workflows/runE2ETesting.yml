@@ -81,4 +81,12 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: appium.log
-          path: mobile_ui/appium.log
+          path:
+            mobile_ui/
+
+            # Upload Test Results
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v1
+        with:
+          name: e2e-results
+          path: mobile_ui/appium_automation_testing/e2e/output
