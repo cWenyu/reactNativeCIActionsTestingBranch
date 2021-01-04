@@ -69,8 +69,9 @@ jobs:
           E2E_TEST_TAGS: 'E2E'
         run: |
           cd mobile_ui
-          cd android && chmod +x gradlew clean
+          cd android 
+          chmod +x gradlew clean
           yarn android
           sleep 15
-          cd appium_automation_testing
+          cd ../appium_automation_testing
           npm run testandroid
