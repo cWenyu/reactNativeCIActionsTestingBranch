@@ -72,6 +72,7 @@ jobs:
           E2E_TEST_DEFAULTS: 'true'
           E2E_TEST_TAGS: 'E2E'
         run: |
+          cd mobile_ui
           yarn android
           sleep 15
           cd appium_automation_testing
