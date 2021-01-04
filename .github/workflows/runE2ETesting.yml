@@ -37,11 +37,6 @@ jobs:
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
 
-      - name: Install dependencies
-        run: |
-          cd mobile_ui
-          yarn install
-
       # Use HTTPS repos
       - name: Use HTTPS repos
         run: |
@@ -51,6 +46,7 @@ jobs:
       - name: Install Repo and Dependencies
         run: |
           cd mobile_ui
+          yarn install
           cd appium_automation_testing
           npm install
 
