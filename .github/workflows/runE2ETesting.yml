@@ -74,7 +74,7 @@ jobs:
           yarn android
           sleep 15
           cd ../appium_automation_testing
-        # npm run testandroid
+          npm run testandroid
 
         # Upload Appium Logs
       - name: Upload Appium logs
