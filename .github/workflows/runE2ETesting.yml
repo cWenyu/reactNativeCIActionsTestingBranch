@@ -22,9 +22,9 @@ jobs:
           npm cache clean --force
           rm -rf package-lock.json
       # Install React Native CLI
-      #- name: Install React Native CLI
-      # run: |
-      #  npm install react-native-cli
+      - name: Install React Native CLI
+        run: |
+          npm install react-native-cli
       # Run Android Emulator
       - name: Run Android Emulator
         run: |
