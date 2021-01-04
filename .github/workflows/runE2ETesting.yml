@@ -22,9 +22,9 @@ jobs:
           npm cache clean --force
           rm -rf package-lock.json
       # Install React Native CLI
-      - name: Install React Native CLI
-        run: |
-          npm install react-native-cli
+      #- name: Install React Native CLI
+      # run: |
+      #  npm install react-native-cli
       # Run Android Emulator
       - name: Run Android Emulator
         run: |
@@ -69,6 +69,7 @@ jobs:
           E2E_TEST_TAGS: 'E2E'
         run: |
           cd mobile_ui
+          cd android && chmod +x gradlew clean
           yarn android
           sleep 15
           cd appium_automation_testing
