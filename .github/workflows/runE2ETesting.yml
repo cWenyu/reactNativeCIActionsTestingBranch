@@ -50,6 +50,13 @@ jobs:
           cd appium_automation_testing
           npm install
 
+      # Generate debug APK
+      - name: Generate debug APK
+        run: |
+          cd mobile_ui
+          yarn install
+          cd android && ./gradlew assembleDebug
+
       # Start the Appium Server
       - name: Start the Appium Server
         run: |
