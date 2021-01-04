@@ -76,15 +76,14 @@ jobs:
           cd ../appium_automation_testing
           npm run testandroid
 
-        # Upload Appium Logs
+      # Upload Appium Logs
       - name: Upload Appium logs
         uses: actions/upload-artifact@v1
         with:
           name: appium.log
-          path:
-            mobile_ui/
+          path: mobile_ui/
 
-            # Upload Test Results
+      # Upload Test Results
       - name: Upload Test Results
         uses: actions/upload-artifact@v1
         with:
