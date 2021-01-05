@@ -38,6 +38,7 @@ describe('Testing Sign in activity', () => {
     $('~signScreenUserName').setValue('invalidate username');
     $('~signScreenPassword').setValue('123456');
 
+    driver.pause(1000);
     $('~signScreenSignInButton').click();
 
     expect(driver.getAlertText()).to.equal(
