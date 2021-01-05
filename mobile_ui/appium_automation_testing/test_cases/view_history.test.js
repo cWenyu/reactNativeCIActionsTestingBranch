@@ -1,9 +1,9 @@
 var expect = require('chai').expect;
 
-describe('Testing User login', () => {
+describe('Testing splash landing page', () => {
   // Adding time out to make sure the app is load prior to test is run
   beforeEach(() => {
-    $('~splashContainer').waitForDisplayed(15000, false);
+    $('~splashContainer').waitForDisplayed(10000, false);
   });
 
   it('should display splash Container', async => {
@@ -13,14 +13,14 @@ describe('Testing User login', () => {
     $('~splashTouchableOpacityButton').click();
 
     $('~signScreenContainer').waitForDisplayed(10000);
-    expect(
-      $(
-        '~signScreenContainer',
-        'sign screen container is displayed',
-      ).isDisplayed(),
-    ).to.equal(true);
+    expect($('~signScreenContainer').isDisplayed()).to.equal(true);
   });
+});
 
+describe('Testing Sign in activity', () => {
+  beforeEach(() => {
+    $('~signScreenContainer').waitForDisplayed(10000, false);
+  });
   it('should fail on signing in (empty username or password)', async => {
     $('~signScreenUserName').setValue('');
     $('~signScreenPassword').setValue('');
@@ -39,8 +39,10 @@ describe('Testing User login', () => {
     $('~signScreenPassword').setValue('123456');
 
     $('~signScreenSignInButton').click();
-    expect(driver.getAlertText()).to.not.be(undefined);
-    // expect(driver.getAlertText()).to.contain('Invalid User!');
+
+    expect(driver.getAlertText()).to.equal(
+      'Invalid User!\nUsername or password is incorrect.',
+    );
 
     driver.execute('mobile:acceptAlert', {action: 'accept'});
   });
@@ -67,6 +69,6 @@ describe('Testing User login', () => {
 
 //   it('should show sampling history screen after click view sample button', async => {
 //     $('~homeScreenViewSampleButton').click();
-//     expect($('~sampleHistotyScreenContainer').isDisplayed()).to.equal(true);
+//     expect($('~sampleHistoryScreenContainer').isDisplayed()).to.equal(true);
 //   });
 // });
