@@ -35,6 +35,7 @@ describe('Testing User login', () => {
   });
 
   it('should fail on signing in (username or password is incorrect)', async => {
+    $('~signScreenContainer').waitForDisplayed(10000);
     $('~signScreenUserName').setValue('invalidate username');
     $('~signScreenPassword').setValue('123456');
 
