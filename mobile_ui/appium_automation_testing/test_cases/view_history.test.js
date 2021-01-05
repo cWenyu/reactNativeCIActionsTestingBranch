@@ -36,7 +36,7 @@ describe('Testing Sign in activity', () => {
   });
 
   it('should fail on signing in (username or password is incorrect)', async => {
-    $('~signScreenUserName').setValue('');
+    $('~signScreenUserName').setValue('123456');
     $('~signScreenPassword').setValue('123456');
 
     $('~signScreenSignInButton').click();
