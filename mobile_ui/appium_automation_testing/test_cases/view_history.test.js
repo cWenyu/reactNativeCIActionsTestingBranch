@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 describe('Testing splash landing page', () => {
   // Adding time out to make sure the app is load prior to test is run
   beforeEach(() => {
-    $('~splashContainer').waitForDisplayed(15000, false);
+    $('~splashContainer').waitForDisplayed(20000, false);
   });
 
   it('should display splash Container', async => {
