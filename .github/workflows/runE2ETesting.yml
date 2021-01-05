@@ -81,7 +81,7 @@ jobs:
           chmod +x ./gradlew
           ./gradlew clean
           yarn android
-          sleep 600
+          sleep 1000
           cd ../appium_automation_testing
           npm run testandroid
 

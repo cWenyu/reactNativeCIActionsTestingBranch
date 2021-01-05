@@ -39,7 +39,7 @@ describe('Testing User login', () => {
     $('~signScreenPassword').setValue('123456');
 
     $('~signScreenSignInButton').click();
-
+    driver.pause(1000);
     expect(driver.getAlertText()).to.not.be(undefined);
     // expect(driver.getAlertText()).to.contain('Invalid User!');
 
