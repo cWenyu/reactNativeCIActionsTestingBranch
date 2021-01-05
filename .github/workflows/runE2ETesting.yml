@@ -74,7 +74,7 @@ jobs:
           yarn android
           sleep 1000
           cd ../appium_automation_testing
-          npm run testandroid
+          npm run testandroid | tee ./reports/test-report.txt
 
       # Upload Appium Logs
       - name: Upload Appium logs
@@ -87,5 +87,5 @@ jobs:
       - name: Upload Test Results
         uses: actions/upload-artifact@v1
         with:
-          name: e2e-results
-          path: mobile_ui/appium_automation_testing/e2e/output
+          name: test-report.txt
+          path: mobile_ui/appium_automation_testing/reports/

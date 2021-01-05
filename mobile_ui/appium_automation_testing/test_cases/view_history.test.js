@@ -22,6 +22,19 @@ describe('Testing Sign in activity', () => {
     $('~signScreenContainer').waitForDisplayed(10000, false);
   });
 
+  // it('should fail on signing in (empty username or password)', async => {
+  //   $('~signScreenUserName').setValue('');
+  //   $('~signScreenPassword').setValue('');
+
+  //   $('~signScreenSignInButton').click();
+
+  //   expect(driver.getAlertText()).to.equal(
+  //     'Wrong Input!\nUsername or password field cannot be empty.',
+  //   );
+
+  //   driver.execute('mobile:acceptAlert', {action: 'accept'});
+  // });
+
   it('should fail on signing in (username or password is incorrect)', async => {
     $('~signScreenUserName').setValue('invalidate username');
     $('~signScreenPassword').setValue('123456');
@@ -30,19 +43,6 @@ describe('Testing Sign in activity', () => {
 
     expect(driver.getAlertText()).to.equal(
       'Invalid User!\nUsername or password is incorrect.',
-    );
-
-    driver.execute('mobile:acceptAlert', {action: 'accept'});
-  });
-
-  it('should fail on signing in (empty username or password)', async => {
-    $('~signScreenUserName').setValue('');
-    $('~signScreenPassword').setValue('');
-
-    $('~signScreenSignInButton').click();
-
-    expect(driver.getAlertText()).to.equal(
-      'Wrong Input!\nUsername or password field cannot be empty.',
     );
 
     driver.execute('mobile:acceptAlert', {action: 'accept'});
