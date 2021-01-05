@@ -18,7 +18,7 @@ describe('Testing splash landing page', () => {
 });
 
 describe('Testing Sign in activity', () => {
-  beforeEach(() => {
+  before(() => {
     $('~signScreenContainer').waitForDisplayed(10000, false);
   });
 
@@ -37,7 +37,7 @@ describe('Testing Sign in activity', () => {
 
   it('should fail on signing in (username or password is incorrect)', async => {
     $('~signScreenUserName').setValue('');
-    $('~signScreenPassword').setValue('');
+    $('~signScreenPassword').setValue('123456');
 
     $('~signScreenSignInButton').click();
 
