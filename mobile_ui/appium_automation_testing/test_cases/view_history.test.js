@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 describe('Testing User login', () => {
   // Adding time out to make sure the app is load prior to test is run
-  before(() => {
+  beforeEach(() => {
     $('~splashContainer').waitForDisplayed(15000, false);
   });
 
@@ -39,7 +39,6 @@ describe('Testing User login', () => {
     $('~signScreenPassword').setValue('123456');
 
     $('~signScreenSignInButton').click();
-    driver.pause(1000);
     expect(driver.getAlertText()).to.not.be(undefined);
     // expect(driver.getAlertText()).to.contain('Invalid User!');
 
