@@ -36,10 +36,22 @@ describe('Testing Sign in activity', () => {
   });
 
   it('should fail on signing in (username or password is incorrect)', async => {
+    expect(
+      $('~signScreenContainer').isDisplayed(),
+      'signScreenContainer should be displayed',
+    ).to.be.true;
+    expect(
+      $('~signScreenSignInButton').isDisplayed(),
+      'signScreenSignInButton should be displayed',
+    ).to.be.true;
+    expect(
+      $('~signScreenUserName').isDisplayed(),
+      'signScreenUserName should be displayed',
+    ).to.be.true;
+
     $('~signScreenUserName').setValue('123456');
     $('~signScreenPassword').setValue('123456');
 
-    $('~signScreenSignInButton').waitForDisplayed(10000, false);
     $('~signScreenSignInButton').click();
 
     expect(driver.getAlertText()).to.equal(
