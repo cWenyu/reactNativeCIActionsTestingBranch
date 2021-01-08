@@ -35,7 +35,6 @@ jobs:
       #     echo "Emulator started"
       - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
         with:
-          cmd: ./gradlew integrationTest
           api: 30
           tag: google_apis
           abi: x86
