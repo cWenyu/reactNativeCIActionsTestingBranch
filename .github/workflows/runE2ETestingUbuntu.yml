@@ -34,6 +34,11 @@ jobs:
       #     $ANDROID_HOME/platform-tools/adb devices
       #     echo "Emulator started"
       - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
+        with:
+          cmd: ./gradlew integrationTest
+          api: 30
+          tag: google_apis
+          abi: x86
       # Set up platform tools like adb.
       - run: sdkmanager "system-images;android-30;google_apis;x86_64"
 
