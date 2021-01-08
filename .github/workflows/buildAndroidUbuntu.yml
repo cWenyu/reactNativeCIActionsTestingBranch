@@ -3,7 +3,7 @@ name: Build Android On Ubuntu
 on:
   push:
     branches:
-      - 32701_CI_pipLine
+      - master
 
 jobs:
   install-and-test:

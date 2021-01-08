@@ -1,4 +1,4 @@
-name: Build Android On Windows
+name: Build Android On Mac OS
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   install-and-test:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: run unit test
@@ -18,14 +18,16 @@ jobs:
 
   build-android:
     needs: install-and-test
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: generate debug apk file
         run: |
           cd mobile_ui
           yarn install
-          cd android && ./gradlew assembleDebug
+          cd android
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
