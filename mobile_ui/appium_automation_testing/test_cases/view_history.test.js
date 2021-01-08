@@ -52,6 +52,7 @@ describe('Testing Sign in activity', () => {
     $('~signScreenUserName').setValue('123456');
     $('~signScreenPassword').setValue('123456');
 
+    driver.hideKeyboard();
     $('~signScreenSignInButton').click();
 
     expect(driver.getAlertText()).to.equal(
