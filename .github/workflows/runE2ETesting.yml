@@ -74,6 +74,7 @@ jobs:
           yarn android
           sleep 1000
           cd ../appium_automation_testing
+          mkdir reports
           npm run testandroid | tee ./reports/test-report.txt
 
       # Upload Appium Logs
