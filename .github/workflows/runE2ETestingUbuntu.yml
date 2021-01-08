@@ -26,7 +26,7 @@ jobs:
         run: |
           npm install react-native-cli
 
-      Run Android Emulator
+      # Run Android Emulator
       - name: Run Android Emulator
         run: echo $ANDROID_HOME
 
