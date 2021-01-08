@@ -34,7 +34,6 @@ jobs:
           echo $ANDROID_HOME/emulator/emulator -list-avds
           echo "Starting emulator"
           nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
-          echo "nohup run sucessfully"
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
 
@@ -68,6 +67,7 @@ jobs:
           chmod +x ./gradlew
           ./gradlew clean
           yarn android
+          echo "yarn android run successfully"
           sleep 1000
           cd ../appium_automation_testing
           mkdir reports
