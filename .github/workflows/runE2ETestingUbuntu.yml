@@ -26,17 +26,19 @@ jobs:
         run: |
           npm install react-native-cli
 
-      # Setup Android SDK
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
       # Run Android Emulator
-      - name: Run Android Emulator
-        run: |
-          nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
-          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
-          $ANDROID_HOME/platform-tools/adb devices
-          echo "Emulator started"
+      # - name: Run Android Emulator
+      #   run: |
+      #     nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
+      #     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      #     $ANDROID_HOME/platform-tools/adb devices
+      #     echo "Emulator started"
+      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
+      # Set up platform tools like adb.
+      - run: sdkmanager "system-images;android-30;google_apis;x86_64"
+
+      # Start ADB (and verify that pathing is working correctly).
+      - run: adb devices
 
       # Install Repo and Dependencies
       - name: Install Repo and Dependencies
