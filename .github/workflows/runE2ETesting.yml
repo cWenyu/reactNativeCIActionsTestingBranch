@@ -77,12 +77,12 @@ jobs:
           mkdir reports
           npm run testandroid | tee ./reports/test-report.txt
 
-      # Upload Appium Logs
-      - name: Upload Appium logs
-        uses: actions/upload-artifact@v1
-        with:
-          name: appium.log
-          path: mobile_ui/
+      # # Upload Appium Logs
+      # - name: Upload Appium logs
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: appium.log
+      #     path: mobile_ui/
 
       # Upload Test Results
       - name: Upload Test Results
