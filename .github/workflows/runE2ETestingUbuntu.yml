@@ -26,32 +26,33 @@ jobs:
         run: |
           npm install react-native-cli
 
-      # Run Android Emulator
-      # - name: Run Android Emulator
-      #   run: |
+      Run Android Emulator
+      - name: Run Android Emulator
+        run: echo $ANDROID_HOME
+
       #     nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
       #     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       #     $ANDROID_HOME/platform-tools/adb devices
       #     echo "Emulator started"
-      - uses: malinskiy/action-android/install-sdk@release/0.1.0
-        # Set up platform tools like adb.
-      - run: sdkmanager platform-tools
+      # - uses: malinskiy/action-android/install-sdk@release/0.1.0
+      #   # Set up platform tools like adb.
+      # - run: sdkmanager platform-tools
 
-      # Start ADB (and verify that pathing is working correctly).
-      - run: adb devices
+      # # Start ADB (and verify that pathing is working correctly).
+      # - run: adb devices
 
-      # Verify $ANDROID_HOME is properly set for later Gradle commands.
-      - run: echo $ANDROID_HOME
+      # # Verify $ANDROID_HOME is properly set for later Gradle commands.
+      # - run: echo $ANDROID_HOME
 
-      # Start ADB (and verify that pathing is working correctly).
-      - run: adb devices
+      # # Start ADB (and verify that pathing is working correctly).
+      # - run: adb devices
 
-      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
-        with:
-          cmd: ./gradlew integrationTest
-          api: 30
-          tag: default
-          abi: x86
+      # - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
+      #   with:
+      #     cmd: ./gradlew integrationTest
+      #     api: 30
+      #     tag: default
+      #     abi: x86
 
       # Install Repo and Dependencies
       - name: Install Repo and Dependencies
