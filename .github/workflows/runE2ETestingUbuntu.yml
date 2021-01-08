@@ -30,30 +30,13 @@ jobs:
       - name: Run Android Emulator
         run: |
           echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-30;google_apis;x86_64'
-          echo "y" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_device -k 'system-images;android-30;google_apis;x86_64' --force
-      #     echo nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
-      #     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
-      #     $ANDROID_HOME/platform-tools/adb devices
-      #     echo "Emulator started"
-      # - uses: malinskiy/action-android/install-sdk@release/0.1.0
-      #   # Set up platform tools like adb.
-      # - run: sdkmanager platform-tools
-
-      # # Start ADB (and verify that pathing is working correctly).
-      # - run: adb devices
-
-      # # Verify $ANDROID_HOME is properly set for later Gradle commands.
-      # - run: echo $ANDROID_HOME
-
-      # # Start ADB (and verify that pathing is working correctly).
-      # - run: adb devices
-
-      # - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
-      #   with:
-      #     cmd: ./gradlew integrationTest
-      #     api: 30
-      #     tag: default
-      #     abi: x86
+          echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_device -k 'system-images;android-30;google_apis;x86_64' --force
+          echo $ANDROID_HOME/emulator/emulator -list-avds
+          echo "Starting emulator"
+          echo "y" | nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
+          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+          $ANDROID_HOME/platform-tools/adb devices
+          echo "Emulator started"
 
       # Install Repo and Dependencies
       - name: Install Repo and Dependencies
