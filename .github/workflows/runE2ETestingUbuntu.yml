@@ -64,8 +64,6 @@ jobs:
           E2E_TEST_TAGS: 'E2E'
         run: |
           cd mobile_ui/android
-          chmod +x ./gradlew
-          ./gradlew clean
           yarn android
           echo "yarn android run successfully"
           sleep 1000
