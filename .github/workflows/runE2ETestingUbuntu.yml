@@ -26,6 +26,7 @@ jobs:
         run: |
           npm install react-native-cli
 
+      # Setup Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
