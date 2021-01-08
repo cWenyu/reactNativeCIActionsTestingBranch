@@ -34,6 +34,7 @@ jobs:
           echo $ANDROID_HOME/emulator/emulator -list-avds
           echo "Starting emulator"
           nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
+          $ANDROID_HOME/platform-tools/adb wait-for-device shell input keyevent 82
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
 
@@ -64,6 +65,7 @@ jobs:
           E2E_TEST_TAGS: 'E2E'
         run: |
           cd mobile_ui/android
+          chmod +x ./gradlew
           yarn android
           echo "yarn android run successfully"
           sleep 1000
