@@ -20,7 +20,7 @@ jobs:
         run: |
           cd mobile_ui
           npm cache clean --force
-          rm -rf package-lock.json
+          del package-lock.json
       # Install React Native CLI
       - name: Install React Native CLI
         run: |
