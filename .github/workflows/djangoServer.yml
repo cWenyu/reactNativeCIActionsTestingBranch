@@ -3,7 +3,7 @@ name: Django CI Workflow
 on:
   push:
     branches:
-      - master
+      - server
 
 # three job definition
 jobs:
@@ -53,7 +53,7 @@ jobs:
         run: |
           cd Aquality2
           touch .env
-          echo $DEV_ENV_FILE >> .env
+          echo $DEV_ENV_FILE | tr ' ' '\n' >> .env
           cat .env
         env:
           DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
