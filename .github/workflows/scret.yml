@@ -19,7 +19,7 @@ jobs:
           touch .env
           echo $DEV_ENV_FILE >> .env
           cat .env
-        with: # Set the secret as an input
+        env:
           DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
         shell: bash
       - name: Upload a Build Artifact
