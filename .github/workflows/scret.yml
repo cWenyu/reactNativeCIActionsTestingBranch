@@ -10,6 +10,9 @@ jobs:
   secret:
     runs-on: ubuntu-latest # os for running the job
     steps:
+     - uses: actions/checkout@v2
+        with:
+          ref: server
       - name: print secrets
         run: |
           cd Aquality2
