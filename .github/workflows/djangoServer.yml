@@ -50,8 +50,10 @@ jobs:
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
           FILE=/Aquality2/.env
-          if test -f "$FILE"; then
+          if [ -f "$FILE" ]; then
               echo "$FILE exists."
+          else 
+              echo "$FILE does not exist."
           fi
         # cd Aquality2
         # python manage.py migrate
