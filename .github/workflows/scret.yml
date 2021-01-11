@@ -1,0 +1,24 @@
+name: Django CI Workflow
+
+on:
+  push:
+    branches:
+      - server
+
+# three job definition
+jobs:
+  secret:
+    runs-on: ubuntu-latest # os for running the job
+    steps:
+      - name: print secrets
+        run: |
+          echo $SERVER_ENV >> Aquality2/.env
+          cat Aquality2/.env
+        shell: bash
+        env:
+          DEV_ENV_FILE: ${{secrets.SERVER_ENV}}
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SERVER_ENV
+          path: Aquality2/.env
