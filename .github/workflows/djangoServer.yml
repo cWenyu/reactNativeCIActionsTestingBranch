@@ -51,12 +51,12 @@ jobs:
         run: |
           FILE=Aquality2/.env
           if [ -f "$FILE" ]; then
-              echo "$FILE exists."
+              cd Aquality2
+              python manage.py migrate
           else 
               echo "$FILE does not exist."
           fi
-        # cd Aquality2
-        # python manage.py migrate
+
       - name: Run Test # running tests
         run: |
           cd Aquality2  
