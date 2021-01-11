@@ -15,7 +15,7 @@ jobs:
           ref: server
       - name: print secrets
         with: # Set the secret as an input
-        DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
+          DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
         run: |
           cd Aquality2
           touch .env
