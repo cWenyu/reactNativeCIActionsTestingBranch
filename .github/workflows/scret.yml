@@ -8,7 +8,7 @@ on:
 # three job definition
 jobs:
   secret:
-    runs-on: ubuntu-latest # os for running the jobsdsd
+    runs-on: ubuntu-latest # os for running the job
     steps:
       - uses: actions/checkout@v2
         with:
