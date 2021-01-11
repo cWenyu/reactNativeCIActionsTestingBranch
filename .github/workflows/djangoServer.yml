@@ -47,6 +47,12 @@ jobs:
       #     FILE_NAME: 'Aquality2/.env'
       #     FILE_DATA: ${{secrets.SERVER_ENV}}
 
+      - shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.SERVER_ENV }}
+        run: |
+          example-command "$secrets.SERVER_ENV"
+
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
           FILE=Aquality2/.env
