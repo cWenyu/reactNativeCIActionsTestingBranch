@@ -44,12 +44,12 @@ jobs:
       - name: create .env file
         uses: finnp/create-file-action@master
         env:
-          FILE_NAME: '/Aquality2/.env'
+          FILE_NAME: 'Aquality2/.env'
           FILE_DATA: ${{secrets.SERVER_ENV}}
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
-          FILE=/Aquality2/.env
+          FILE=Aquality2/.env
           if [ -f "$FILE" ]; then
               echo "$FILE exists."
           else 
