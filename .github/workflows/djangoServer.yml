@@ -3,7 +3,7 @@ name: Django CI Workflow
 on:
   push:
     branches:
-      - master
+      - server
 
 # three job definition
 jobs:
@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout code # checking our the code at current commit that triggers the workflow
         uses: actions/checkout@v2
+        with:
+          ref: server
       - name: Cache dependency # caching dependency will make our build faster.
         uses: actions/cache@v2 # for more info checkout pip section documentation at https://github.com/actions/cache
         with:
@@ -49,7 +51,9 @@ jobs:
 
       - name: print secrets
         run: |
-          echo $DEV_ENV_FILE >> Aquality2/.env
+          cd Aquality2
+          touch .env
+          echo $SERVER_ENV >> Aquality2/.env
           cat Aquality2/.env
         shell: bash
         env:
