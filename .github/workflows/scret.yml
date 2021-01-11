@@ -8,7 +8,7 @@ on:
 # three job definition
 jobs:
   secret:
-    runs-on: ubuntu-latest # os for running the job
+    runs-on: ubuntu-latest # os for running the job ds
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,7 +17,7 @@ jobs:
         run: |
           cd Aquality2
           touch .env
-          printf "$DEV_ENV_FILE" >> .env
+          printf $DEV_ENV_FILE >> .env
           cat .env
         env:
           DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
