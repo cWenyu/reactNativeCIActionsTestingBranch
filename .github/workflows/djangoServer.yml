@@ -3,7 +3,7 @@ name: Django CI Workflow
 on:
   push:
     branches:
-      - master
+      - server
 
 # three job definition
 jobs:
@@ -53,11 +53,11 @@ jobs:
         run: |
           cd Aquality2
           touch .env
-          echo $SERVER_ENV >> Aquality2/.env
-          cat Aquality2/.env
-        shell: bash
+          echo $DEV_ENV_FILE >> .env
+          cat .env
         env:
-          DEV_ENV_FILE: ${{secrets.SERVER_ENV}}
+          DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
+        shell: bash
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
