@@ -47,7 +47,7 @@ jobs:
       #     FILE_NAME: 'Aquality2/.env'
       #     FILE_DATA: ${{secrets.SERVER_ENV}}
 
-      - name: Echo out a GitHub Actions Secret to the logs
+      - name: Echo out a GitHub Actions Secret
         run: |
           echo ${{secrets.SERVER_ENV}} | sed 's/./& /g'
 
