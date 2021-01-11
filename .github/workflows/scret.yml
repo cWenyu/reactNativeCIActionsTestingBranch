@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: print secrets
         run: |
+          touch Aquality2/.env
           echo $SERVER_ENV >> Aquality2/.env
           cat Aquality2/.env
         shell: bash
