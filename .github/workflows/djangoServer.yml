@@ -47,11 +47,13 @@ jobs:
       #     FILE_NAME: 'Aquality2/.env'
       #     FILE_DATA: ${{secrets.SERVER_ENV}}
 
-      - name: Echo out a GitHub Actions Secret
-        env: # Or as an environment variable
+      - name: create .env file
+        uses: finnp/create-file-action@master
+        with: # Or as an environment variable
           super_secret: ${{ secrets.SERVER_ENV }}
-        run: |
-          echo ${{secrets.SECRET_TOKEN}}
+        env:
+          FILE_NAME: 'Aquality2/.env'
+          FILE_DATA: ${{secrets.SERVER_ENV}}
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
