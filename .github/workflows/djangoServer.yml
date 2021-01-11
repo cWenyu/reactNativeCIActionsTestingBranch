@@ -48,8 +48,12 @@ jobs:
       #     FILE_DATA: ${{secrets.SERVER_ENV}}
 
       - name: Echo out a GitHub Actions Secret
+        with: # Set the secret as an input
+          super_secret: ${{ secrets.SERVER_ENV }}
+        env: # Or as an environment variable
+          super_secret: ${{ secrets.SERVER_ENV }}
         run: |
-          echo ${{secrets.SERVER_ENV}} | sed 's/./& /g'
+          echo ${{secrets.SECRET_TOKEN}}
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
