@@ -47,13 +47,13 @@ jobs:
       #     FILE_NAME: 'Aquality2/.env'
       #     FILE_DATA: ${{secrets.SERVER_ENV}}
 
-      - name: create .env file
-        uses: finnp/create-file-action@master
-        with: # Or as an environment variable
-          super_secret: ${{ secrets.SERVER_ENV }}
+      - name: print secrets
+        run: |
+          echo $DEV_ENV_FILE >> Aquality2/.env
+          cat Aquality2/.env
+        shell: bash
         env:
-          FILE_NAME: 'Aquality2/.env'
-          FILE_DATA: ${{secrets.SERVER_ENV}}
+          DEV_ENV_FILE: ${{secrets.SERVER_ENV}}
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
