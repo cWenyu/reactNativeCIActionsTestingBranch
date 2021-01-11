@@ -51,7 +51,7 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.SERVER_ENV }}
         run: |
-          example-command "$secrets.SERVER_ENV"
+          echo "$secrets.SERVER_ENV"
 
       - name: Run Migrations # run migrations to create table in side car db container
         run: |
