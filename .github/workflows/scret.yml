@@ -17,8 +17,8 @@ jobs:
         run: |
           cd Aquality2
           touch .env
-          echo $SERVER_ENV >> Aquality2/.env
-          cat Aquality2/.env
+          echo $SERVER_ENV >> .env
+          cat .env
         shell: bash
         env:
           DEV_ENV_FILE: ${{secrets.SERVER_ENV}}
