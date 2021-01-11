@@ -17,7 +17,7 @@ jobs:
         run: |
           cd Aquality2
           touch .env
-          echo $DEV_ENV_FILE >> .env
+          printf ${{ DEV_ENV_FILE }} >> .env
           cat .env
         env:
           DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
