@@ -14,13 +14,13 @@ jobs:
         with:
           ref: server
       - name: print secrets
-        with: # Set the secret as an input
-          DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
         run: |
           cd Aquality2
           touch .env
           echo $DEV_ENV_FILE >> .env
           cat .env
+        env: # Set the secret as an input
+          DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
         shell: bash
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
