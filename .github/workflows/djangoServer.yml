@@ -38,7 +38,6 @@ jobs:
         run: python --version
       - name: Install requirements # install application requirements
         run: |
-          cd Aquality2
           pip install -r requirements.txt
       - name: Check Syntax # check code formatting
         run: pycodestyle --statistics .
