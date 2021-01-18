@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "b3628b64-17bb-4150-96c5-9f01e2fc9064",
+		"name": "CCCMI ",
+		"description": "CCCMI servers collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account api",
+			"item": [
+				{
+					"name": "user register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/account/?username=AliceLi&email=aliceli@gmail.com&password=a9lice08LI",
+							"protocol": "http",
+							"host": [
+								"aquality-server",
+								"eba-rxqnbumy",
+								"eu-west-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"aquality_server",
+								"account",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "AliceLi"
+								},
+								{
+									"key": "email",
+									"value": "aliceli@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "a9lice08LI"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "user login\nuser register"
+		},
+		{
+			"name": "Rivers api",
+			"item": [
+				{
+					"name": "get river data by location name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response data length should <= 5\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.lengthOf.lessThan(6);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?location=dundalk",
+							"protocol": "http",
+							"host": [
+								"aquality-server",
+								"eba-rxqnbumy",
+								"eu-west-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"aquality_server",
+								"rivers",
+								""
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "dundalk"
+								}
+							]
+						},
+						"description": "place name:dundalk"
+					},
+					"response": []
+				},
+				{
+					"name": "get river data by coordiate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response data length should <= 5\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.lengthOf.lessThan(6);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?latitude=54.001271&longitude=-6.393078",
+							"protocol": "http",
+							"host": [
+								"aquality-server",
+								"eba-rxqnbumy",
+								"eu-west-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"aquality_server",
+								"rivers",
+								""
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "54.001271"
+								},
+								{
+									"key": "longitude",
+									"value": "-6.393078"
+								}
+							]
+						},
+						"description": "requested coordiate:(dundalk)\n54.001271, -6.393078"
+					},
+					"response": []
+				},
+				{
+					"name": "get river data by empty location name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Default location = null\", function () {\r",
+									"   let defaultResponse = async () => pm.sendRequest(\"http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?location=null\", function (err, response) {\r",
+									"        return response.json();\r",
+									"    });\r",
+									"    defaultResponse().then((value) => pm.expect(pm.response.json()).to.deep.equal(value.json()));\r",
+									"     ;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?location=",
+							"protocol": "http",
+							"host": [
+								"aquality-server",
+								"eba-rxqnbumy",
+								"eu-west-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"aquality_server",
+								"rivers",
+								""
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": ""
+								}
+							]
+						},
+						"description": "default location: null"
+					},
+					"response": []
+				},
+				{
+					"name": "get river data by empty latitude && longitude ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Default latitude= 54.93 longitude= -7.55\", function () {\r",
+									"   let defaultResponse = async () => pm.sendRequest(\"http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?latitude=54.93&longitude=-7.55\", function (err, response) {\r",
+									"        return response.json();\r",
+									"    });\r",
+									"    defaultResponse().then((value) => pm.expect(pm.response.json()).to.deep.equal(value.json()));\r",
+									"     ;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?latitude=&longitude=",
+							"protocol": "http",
+							"host": [
+								"aquality-server",
+								"eba-rxqnbumy",
+								"eu-west-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"aquality_server",
+								"rivers",
+								""
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": ""
+								},
+								{
+									"key": "longitude",
+									"value": ""
+								}
+							]
+						},
+						"description": "default latitude= 54.93 longitude= -7.55"
+					},
+					"response": []
+				}
+			],
+			"description": "search river by coordinate or place name"
+		},
+		{
+			"name": "Arduino Data api",
+			"item": [],
+			"description": "Post Arduino data"
+		}
+	]
+}
