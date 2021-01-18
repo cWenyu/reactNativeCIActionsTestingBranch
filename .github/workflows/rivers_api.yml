@@ -7,7 +7,7 @@ on:
 
 # three job definition
 jobs:
-  Django-check-job: # health check job for testing and code formatting check
+  API collection testing job: # health check job for testing and code formatting check
     runs-on: ubuntu-latest # os for running the job
     steps:
       - name: Checkout code # checking our the code at current commit that triggers the workflow
@@ -25,7 +25,7 @@ jobs:
         run: |
           mkdir -p testResults
 
-          # Run the POSTMAN collection
+      # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
           newman run ./tests/CCCMI .postman_collection.json.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
