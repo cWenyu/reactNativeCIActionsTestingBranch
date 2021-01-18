@@ -7,7 +7,7 @@ on:
 
 # three job definition
 jobs:
-  API collection testing job: # health check job for testing and code formatting check
+  API-collection-testing-job: # health check job for testing and code formatting check
     runs-on: ubuntu-latest # os for running the job
     steps:
       - name: Checkout code # checking our the code at current commit that triggers the workflow
