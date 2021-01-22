@@ -44,3 +44,5 @@ jobs:
         with:
           name: RunReports
           path: Aquality2/testResults
+# get a new report
+# new APIs add in
