@@ -1,0 +1,23 @@
+# This is the name of the workflow, visible on GitHub UI.
+name: test
+
+# Here we tell GitHub to run the workflow when a commit
+# is pushed or a Pull Request is opened.
+on:
+  push:
+    branches:
+      - arduino
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: arduino
+
+    - name: Build on Arduino CLI
+      run: bash ci/build-arduino.sh
+
+    - name: Build on PlatformIO
+      run: bash ci/build-platformio.sh
