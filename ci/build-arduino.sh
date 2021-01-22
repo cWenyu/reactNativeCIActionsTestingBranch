@@ -52,7 +52,7 @@ ln -s $GITHUB_WORKSPACE $HOME/Arduino/libraries/CI_Test_Library
 
 # Build example sketches
 for p in ${PLATFORMS[*]} ; do
-    for d in examples/* ; do
+    for d in Arduino/* ; do
         echo -e "\n########################################################################";
         echo -e "${YELLOW}BUILD ${d} FOR ${p}"
         echo "########################################################################";
