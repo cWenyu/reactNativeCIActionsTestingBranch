@@ -1,0 +1,548 @@
+{
+  "info": {
+    "_postman_id": "b3628b64-17bb-4150-96c5-9f01e2fc9064",
+    "name": "CCCMI ",
+    "description": "CCCMI servers collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Account api",
+      "item": [
+        {
+          "name": "user register (post)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Should register successfully\", function () {\r",
+                  "    let jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.status).to.equal('Register Sucess');\r",
+                  "    pm.expect(jsonData.Message).to.equal('User Created');\r",
+                  "    pm.expect(jsonData.username).to.equal(pm.collectionVariables.get(\"registed_username\"));\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept-encoding": true,
+              "connection": true,
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "{{registed_username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "{{registed_email}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{registed_password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/useraccount/register",
+              "host": ["{{url}}"],
+              "path": ["useraccount", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "check user login status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Should login successfully\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.status).to.equal('Login Success');\r",
+                  "    pm.expect(jsonData.user_username).to.equal(pm.collectionVariables.get(\"registed_username\"));\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "{{registed_username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{registed_password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/useraccount/loginauth",
+              "host": ["{{url}}"],
+              "path": ["useraccount", "loginauth"]
+            },
+            "description": "\r\n    http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/useraccount/loginauth\r\n"
+          },
+          "response": []
+        },
+        {
+          "name": "delete registed user ",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"should delete user successfully\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.status).to.eql('User with username : '+pm.collectionVariables.get(\"registed_username\")+ ' Deleted');\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "{{registed_username}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/useraccount/delete",
+              "host": ["{{url}}"],
+              "path": ["useraccount", "delete"]
+            },
+            "description": "delete registed user by username"
+          },
+          "response": []
+        }
+      ],
+      "description": "user login\nuser register"
+    },
+    {
+      "name": "Rivers api",
+      "item": [
+        {
+          "name": "get river data by location name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response data length should <= 5\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.have.lengthOf.lessThan(6);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "connection": true,
+              "accept-encoding": true,
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/rivers/?location=dundalk",
+              "host": ["{{url}}"],
+              "path": ["rivers", ""],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "dundalk"
+                }
+              ]
+            },
+            "description": "place name:dundalk"
+          },
+          "response": []
+        },
+        {
+          "name": "get river data by coordinate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response data length should <= 5\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.have.lengthOf.lessThan(6);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true,
+              "accept-encoding": true,
+              "connection": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/rivers/?latitude=54.001271&longitude=-6.393078",
+              "host": ["{{url}}"],
+              "path": ["rivers", ""],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "54.001271"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-6.393078"
+                }
+              ]
+            },
+            "description": "requested coordinate:  \nlatitude=54.001271 longitude=-6.393078"
+          },
+          "response": []
+        },
+        {
+          "name": "get river data by empty location name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Default location = null\", function () {\r",
+                  "   let defaultResponse = async () => pm.sendRequest(\"http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?location=null\", function (err, response) {\r",
+                  "        return response.json();\r",
+                  "    });\r",
+                  "    defaultResponse().then((value) => pm.expect(pm.response.json()).to.deep.equal(value.json()));\r",
+                  "     ;\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "connection": true,
+              "accept-encoding": true,
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/rivers/?location=",
+              "host": ["{{url}}"],
+              "path": ["rivers", ""],
+              "query": [
+                {
+                  "key": "location",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "default location: null"
+          },
+          "response": []
+        },
+        {
+          "name": "get river data by empty latitude && longitude ",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Default latitude= 54.93 longitude= -7.55\", function () {\r",
+                  "   let defaultResponse = async () => pm.sendRequest(\"http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server/rivers/?latitude=54.93&longitude=-7.55\", function (err, response) {\r",
+                  "        return response.json();\r",
+                  "    });\r",
+                  "    defaultResponse().then((value) => pm.expect(pm.response.json()).to.deep.equal(value.json()));\r",
+                  "     ;\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/rivers/?latitude=&longitude=",
+              "host": ["{{url}}"],
+              "path": ["rivers", ""],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": ""
+                },
+                {
+                  "key": "longitude",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "default latitude= 54.93 longitude= -7.55"
+          },
+          "response": []
+        }
+      ],
+      "description": "search river by coordinate or place name"
+    },
+    {
+      "name": "Arduino Data api",
+      "item": [
+        {
+          "name": "get data by arduino id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response data length should > 1\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.have.lengthOf.greaterThan(1);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/data/?arduino_id=1",
+              "host": ["{{url}}"],
+              "path": ["data", ""],
+              "query": [
+                {
+                  "key": "arduino_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "by arduino id"
+          },
+          "response": []
+        },
+        {
+          "name": "post data to server ",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Your test name\", function () {\r",
+                  "    let jsonData = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"data_id\", jsonData.data_id);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "arduino_id",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "latitude",
+                  "value": "54.001271 ",
+                  "type": "text"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-6.393078",
+                  "type": "text"
+                },
+                {
+                  "key": "ph",
+                  "value": "6.9",
+                  "type": "text"
+                },
+                {
+                  "key": "temp",
+                  "value": "15",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/data/",
+              "host": ["{{url}}"],
+              "path": ["data", ""]
+            },
+            "description": "{      \"arduino_id\": 5,\r\n        \"latitude\": 54.001271,\r\n        \"longitude\": -6.393078,\r\n        \"ph\": 6.9,\r\n        \"temp\": 15\r\n}"
+          },
+          "response": []
+        },
+        {
+          "name": "delete data by data_id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status test\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/data/{{data_id}}/",
+              "host": ["{{url}}"],
+              "path": ["data", "{{data_id}}", ""]
+            },
+            "description": "{      \"arduino_id\": 5,\r\n        \"latitude\": 7.1,\r\n        \"longitude\": 50.1,\r\n        \"ph\": 7.1,\r\n        \"temp\": 10.1\r\n}"
+          },
+          "response": []
+        }
+      ],
+      "description": "Post Arduino data"
+    },
+    {
+      "name": "AI model",
+      "item": [],
+      "description": "AI APIs test: API Accept Image and Link to AI Model and return results"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "http://aquality-server.eba-rxqnbumy.eu-west-1.elasticbeanstalk.com/aquality_server"
+    },
+    {
+      "key": "data_id",
+      "value": "-1"
+    },
+    {
+      "key": "registed_username",
+      "value": "default_name"
+    },
+    {
+      "key": "registed_email",
+      "value": "wenyuTesting@gmail.com"
+    },
+    {
+      "key": "registed_password",
+      "value": "password"
+    }
+  ]
+}
