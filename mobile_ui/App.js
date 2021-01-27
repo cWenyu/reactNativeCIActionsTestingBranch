@@ -28,6 +28,7 @@ import SupportScreen from './screens/SupportScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SearchRiverScreen from './screens/SearchRiverScreen';
 import SearchRiverScreen2 from './screens/SearchRiverScreen2';
+import uploadImage from './screens/uploadImage';
 import fetchApi from './screens/fetchApi';
 import {AuthContext} from './components/context';
 
@@ -35,6 +36,9 @@ import RootStackScreen from './screens/RootStackScreen';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import HomeScreen from './screens/HomeScreen';
+
+import testVariables from './appium_automation_testing/test_variables';
+import SampleHistoryScreen from './screens/SampleHistoryScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -198,6 +202,21 @@ const App = () => {
         }}
       />
       {/* add screen here */}
+      <HomeStack.Screen
+        name="uploadImage"
+        component={uploadImage}
+        options={{
+          title: 'uploadImage',
+          headerLeft: () => (
+            <Icon.Button
+              name="ios-menu"
+              size={25}
+              backgroundColor="#009387"
+              onPress={() => navigation.openDrawer()}
+            />
+          ),
+        }}
+      />
     </HomeStack.Navigator>
   );
 
@@ -211,6 +230,10 @@ const App = () => {
               <Drawer.Screen name="HomeScreen" component={HomeStackScreen} />
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
               <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+              <Drawer.Screen
+                name="SampleHistoryScreen"
+                component={SampleHistoryScreen}
+              />
 
               {/* TAKE  NEW  SAMPLE */}
               <Drawer.Screen

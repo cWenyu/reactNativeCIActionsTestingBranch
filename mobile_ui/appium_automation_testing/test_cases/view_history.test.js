@@ -37,18 +37,18 @@ describe('Testing Sign in activity', () => {
     driver.execute('mobile:acceptAlert', {action: 'accept'});
   });
 
-  // it('should fail on signing in (username or password is incorrect)', async => {
-  //   $('~' + testVariables.signScreenUserName).setValue('invalidate username');
-  //   $('~' + testVariables.signScreenPassword).setValue('123456');
+  it('should fail on signing in (username or password is incorrect)', async => {
+    $('~' + testVariables.signScreenUserName).setValue('invalidate username');
+    $('~' + testVariables.signScreenPassword).setValue('123456');
 
-  //   $('~' + testVariables.signScreenSignInButton).click();
+    $('~' + testVariables.signScreenSignInButton).click();
 
-  //   expect(driver.getAlertText()).to.equal(
-  //     'Invalid User!\nUsername or password is incorrect.',
-  //   );
+    expect(driver.getAlertText()).to.equal(
+      'Invalid User!\nUsername or password is incorrect.',
+    );
 
-  //   driver.execute('mobile:acceptAlert', {action: 'accept'});
-  // });
+    driver.execute('mobile:acceptAlert', {action: 'accept'});
+  });
 
   it('should successful on signing in and show home Screen', async => {
     $('~' + testVariables.signScreenUserName).setValue('user1');
@@ -63,25 +63,29 @@ describe('Testing Sign in activity', () => {
   });
 });
 
-// describe('Testing user view all history', () => {
-//   beforeEach(() => {
-//     expect($('~' + testVariables.homeScreenContainer).isDisplayed()).to.equal(
-//       true,
-//     );
-//   });
-//   it('should have two buttons on home screen 1.take new sample button, 2.view sample', async => {
-//     expect(
-//       $('~' + testVariables.homeScreenTakeNewSampleButton).isDisplayed(),
-//     ).to.equal(true);
-//     expect(
-//       $('~' + testVariables.homeScreenViewSampleButton).isDisplayed(),
-//     ).to.equal(true);
-//   });
+describe('Testing user view all history', () => {
+  beforeEach(() => {
+    expect($('~' + testVariables.homeScreenContainer).isDisplayed()).to.equal(
+      true,
+    );
+  });
+  it('should have two buttons on home screen 1.take new sample button, 2.view sample', async => {
+    expect(
+      $('~' + testVariables.homeScreenTakeNewSampleButton).isDisplayed(),
+    ).to.equal(true);
+    expect(
+      $('~' + testVariables.homeScreenViewSampleButton).isDisplayed(),
+    ).to.equal(true);
+  });
 
-//   it('should show sampling history screen after click view sample button', async => {
-//     $('~' + testVariables.homeScreenViewSampleButton).click();
-//     expect(
-//       $('~' + testVariables.sampleHistoryScreenContainer).isDisplayed(),
-//     ).to.equal(true);
-//   });
-// });
+  it('should show sampling history screen after click view sample button', async => {
+    $('~' + testVariables.homeScreenViewSampleButton).click();
+    $('~' + testVariables.sampleHistoryScreenContainer).waitForDisplayed(
+      1000,
+      false,
+    );
+    expect(
+      $('~' + testVariables.sampleHistoryScreenContainer).isDisplayed(),
+    ).to.equal(true);
+  });
+});

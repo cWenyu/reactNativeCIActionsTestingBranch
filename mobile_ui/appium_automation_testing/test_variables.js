@@ -46,17 +46,16 @@ const testVariables = {
   insectScreenSelectInsectButton: 'insectScreenSelectInsectButton',
   insectScreenAnalyzeInsectButton: 'insectScreenAnalyzeInsectButton',
 
-  //choose insect screen
+  //select insect1 screen
   chooseInsectScreenContainer: 'chooseInsectScreenContainer',
   group1List: 'group1List',
-  group1ListItem: 'group1ListItem',
   group2List: 'group2List',
-  group2ListItem: 'group2ListItem',
-  extendBarTextInput: 'extendBarTextInput',
-  finishSelectButton: 'finishSelectButton',
+  amountTextInput: 'amountTextInput',
+  addAmountButton: 'addAmountButton',
   takePhotoButton: 'takePhotoButton',
   chooseFormLibraryButton: 'finishSelectButton',
   cancelButton: 'cancelButton',
+  uploadedPhoto: 'uploadedPhoto',
 };
 
 module.exports = testVariables;

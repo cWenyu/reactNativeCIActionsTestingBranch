@@ -143,8 +143,10 @@ describe('Testing tabs with screens', () => {
     ).to.be.true;
 
     $('~' + testVariables.arduinoScreenSearchIconButton).click();
-    driver.pause(1000);
-
+    $('~' + testVariables.arduinoConnectScreenContainer).waitForDisplayed(
+      10000,
+      false,
+    );
     expect(
       $('~' + testVariables.arduinoConnectScreenContainer).isDisplayed(),
       'Arduino connect screen should be displayed',
@@ -210,47 +212,35 @@ describe('Testing tabs with screens', () => {
       $('~' + testVariables.group1List).isDisplayed(),
       'Insect group 1 is displayed',
     ).to.be.true;
+    // expect(
+    //   $('~' + testVariables.group2List).isDisplayed(),
+    //   'Insect group 2 is displayed',
+    // ).to.be.true;
     expect(
-      $('~' + testVariables.group2List).isDisplayed(),
-      'Insect group 2 is displayed',
-    ).to.be.true;
-    expect(
-      $$('~' + testVariables.group1ListItem),
-      'group 1 List items length > 1',
-    ).to.have.length.above(1);
-    expect(
-      $$('~' + testVariables.group2ListItem),
-      'group 2 List items length > 1',
-    ).to.have.length.above(1);
-  });
-
-  it('should display insects groups', () => {
-    expect(
-      $('~' + testVariables.group1List).isDisplayed(),
-      'Insect group 1 is displayed',
-    ).to.be.true;
-    expect(
-      $('~' + testVariables.group2List).isDisplayed(),
-      'Insect group 2 is displayed',
-    ).to.be.true;
-    expect(
-      $$('~' + testVariables.group1ListItem),
-      'group 1 List items length > 1',
-    ).to.have.length.above(1);
-    expect(
-      $$('~' + testVariables.group2ListItem),
-      'group 2 List items length > 1',
-    ).to.have.length.above(1);
+      $$('~' + testVariables.group1List),
+      'group 1 List items length > 5',
+    ).to.have.length.above(5);
+    // expect(
+    //   $$('~' + testVariables.group2ListItem),
+    //   'group 2 List items length > 1',
+    // ).to.have.length.above(1);
   });
 
   it('should display entered number for an insect item', () => {
-    const group1ListItem = $$('~' + testVariables.group1ListItem);
-    const extendBarTextInput = $('~' + testVariables.extendBarTextInput);
-    group1ListItem[0].click();
+    const amountTextInput = $$('~' + testVariables.amountTextInput);
+    const addAmountButton = $$('~' + testVariables.addAmountButton);
+
+    expect(amountTextInput, 'amountTextInput length > 5').to.have.length.above(
+      5,
+    );
+    expect(addAmountButton, 'addAmountButton length > 5').to.have.length.above(
+      5,
+    );
+
+    amountTextInput[0].setValue(10);
+    addAmountButton[0].click();
     driver.pause(1000);
-    expect(extendBarTextInput.isDisplayed(), 'Extend bar is displayed').to.be
-      .true;
-    extendBarTextInput.setValue(10);
+    expect(amountTextInput[0].getText(), 'amount shows as 10').to.equal('10');
     driver.pause(1000);
   });
 
@@ -295,5 +285,10 @@ describe('Testing tabs with screens', () => {
       testVariables.takePhotoButton.isDisplayed(),
       'Take photo button is displayed',
     ).to.be.true;
+  });
+  it('should upload photo from camera)', async () => {
+    driver.pressKeyCode(3);
+    driver.pressKeyCode(27);
+    driver.sleep(2000);
   });
 });
