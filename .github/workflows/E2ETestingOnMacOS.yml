@@ -72,7 +72,7 @@ jobs:
           chmod +x ./gradlew
           ./gradlew clean
           yarn android
-          sleep 100
+          sleep 500
           cd ../appium_automation_testing
           mkdir reports
           npm run testandroid | tee ./reports/test-report.txt
