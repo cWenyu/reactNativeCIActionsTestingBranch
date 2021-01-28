@@ -40,7 +40,7 @@ describe('Testing Sign in activity', () => {
   it('should fail on signing in (username or password is incorrect)', async => {
     $('~' + testVariables.signScreenUserName).setValue('invalidate username');
     $('~' + testVariables.signScreenPassword).setValue('123456');
-
+    driver.pause(1000);
     $('~' + testVariables.signScreenSignInButton).click();
 
     expect(driver.getAlertText()).to.equal(
@@ -81,7 +81,7 @@ describe('Testing user view all history', () => {
   it('should show sampling history screen after click view sample button', async => {
     $('~' + testVariables.homeScreenViewSampleButton).click();
     $('~' + testVariables.sampleHistoryScreenContainer).waitForDisplayed(
-      1000,
+      5000,
       false,
     );
     expect(
