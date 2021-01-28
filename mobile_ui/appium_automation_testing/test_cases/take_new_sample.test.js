@@ -86,6 +86,13 @@ describe('Testing tabs with screens', () => {
   });
 
   it('should display 3 tabs and default river details screen after click choose button', async => {
+    expect($('~' + testVariables.riverDetailContainer).isDisplayed()).to.equal(
+      true,
+    );
+    expect(
+      $('~' + testVariables.riverDetailChooseRiverButton).isDisplayed(),
+    ).to.equal(true);
+
     $('~' + testVariables.riverDetailChooseRiverButton).click();
     $('~' + testVariables.riverDetailScreen).waitForDisplayed(10000, false);
     expect(
