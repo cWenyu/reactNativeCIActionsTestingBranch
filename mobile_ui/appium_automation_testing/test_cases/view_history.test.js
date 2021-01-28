@@ -37,18 +37,17 @@ describe('Testing Sign in activity', () => {
     driver.execute('mobile:acceptAlert', {action: 'accept'});
   });
 
-  it('should fail on signing in (username or password is incorrect)', async => {
-    $('~' + testVariables.signScreenUserName).setValue('invalidate username');
-    $('~' + testVariables.signScreenPassword).setValue('123456');
-    driver.pause(1000);
-    $('~' + testVariables.signScreenSignInButton).click();
+  // it('should fail on signing in (username or password is incorrect)', async => {
+  //   $('~' + testVariables.signScreenUserName).setValue('invalidate username');
+  //   $('~' + testVariables.signScreenPassword).setValue('123456');
+  //   $('~' + testVariables.signScreenSignInButton).click();
 
-    expect(driver.getAlertText()).to.equal(
-      'Invalid User!\nUsername or password is incorrect.',
-    );
+  //   expect(driver.getAlertText()).to.equal(
+  //     'Invalid User!\nUsername or password is incorrect.',
+  //   );
 
-    driver.execute('mobile:acceptAlert', {action: 'accept'});
-  });
+  //   driver.execute('mobile:acceptAlert', {action: 'accept'});
+  // });
 
   it('should successful on signing in and show home Screen', async => {
     $('~' + testVariables.signScreenUserName).setValue('user1');
