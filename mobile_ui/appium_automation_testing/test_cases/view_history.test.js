@@ -4,7 +4,7 @@ var testVariables = require('../test_variables');
 describe('Testing splash landing page', () => {
   // Adding time out to make sure the app is load prior to test is run
   beforeEach(() => {
-    $('~' + testVariables.splashContainer).waitForDisplayed(10000, false);
+    $('~' + testVariables.splashContainer).waitForDisplayed(50000, false);
   });
 
   it('should display splash Container', async => {
