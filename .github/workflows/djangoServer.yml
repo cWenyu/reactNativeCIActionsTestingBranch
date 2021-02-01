@@ -39,6 +39,7 @@ jobs:
         run: python --version
       - name: Install requirements # install application requirements
         run: |
+          pip install --upgrade pip
           cd Aquality2
           pip install -r requirements.txt
 
