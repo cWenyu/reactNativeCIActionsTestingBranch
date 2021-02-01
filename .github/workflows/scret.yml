@@ -3,7 +3,7 @@ name: Django CI Workflow
 on:
   push:
     branches:
-      - server
+      - master
 
 # three job definition
 jobs:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: server
+          ref: master
       - name: print secrets
         run: |
           cd Aquality2
