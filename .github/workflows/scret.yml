@@ -3,7 +3,7 @@ name: Django CI Workflow
 on:
   push:
     branches:
-      - master
+      - server
 
 # three job definition
 jobs:

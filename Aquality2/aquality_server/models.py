@@ -2,27 +2,26 @@
 # from django.contrib.gis.geos import Point
 # Create your models here.
 from django.db import models
+from django.contrib.auth.models import User
 
 # Login Account Model
 class Login_Account(models.Model):
     account_id = models.AutoField(primary_key = True)
-    username = models.CharField(max_length=200)
-    email = models.EmailField()
+    username = models.CharField(max_length=200,unique=True)
+    email = models.EmailField(unique=True)
     password = models.CharField(max_length=200)
-    def __str__(self):
-        return self.username
 
 #User Account Models
 class User_Account(models.Model):
-    user_account = models.OneToOneField(
-        Login_Account,
-        on_delete=models.CASCADE,
-        primary_key = True,
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE
     )
-    full_name = models.CharField(max_length = 200)
-    created_at = models.DateTimeField()
-    user_group = models.CharField(max_length = 200)
-
+    user_group = models.CharField(max_length = 200,null=True)
+    profile_pic = models.ImageField(upload_to = 'user-profile-pic',null=True)
+    date_of_birth = models.DateTimeField(default=None, blank=True, null=True)
+    occupation = models.CharField(max_length = 200, null =True)
+    bio = models.TextField(null=True)
+    
 #River Models
 class River(models.Model):
     river_id = models.AutoField(primary_key = True)
@@ -31,8 +30,8 @@ class River(models.Model):
     river_catchments_code = models.CharField(max_length = 20)
     river_catchments = models.CharField(max_length = 200)
     # location = models.PointField(geography=True, default=Point(0.0, 0.0),null=True)
-    latitute = models.FloatField(default = 0,null=True)
-    longitute = models.FloatField(default = 0,null=True)
+    latitude = models.FloatField(default = 0,null=True)
+    longitude = models.FloatField(default = 0,null=True)
     local_authority = models.CharField(max_length = 200)
     water_body_category  = models.CharField(max_length = 200)
     protected_area = models.CharField(max_length = 20,null=True)
@@ -50,19 +49,28 @@ class Data(models.Model):
         null=True
     )   
     # location = models.PointField(geography=True, default=Point(0.0, 0.0),null=True)
-    latitute = models.FloatField(default = 0,null=True)
-    longitute = models.FloatField(default = 0,null=True)
+    arduino_id = models.IntegerField()
+    latitude = models.FloatField(default = 0,null=True)
+    longitude = models.FloatField(default = 0,null=True)
     ph = models.FloatField(default=None, blank=True, null=True)
     temp = models.FloatField(default=None, blank=True, null=True)
-    date_captured = models.DateTimeField(default=None, blank=True, null=True)
+    date_captured = models.DateTimeField(auto_now_add=True)
     ecological_status = models.CharField(max_length = 200,default=None, blank=True, null=True)
     score_by_insect = models.IntegerField(default=None, blank=True, null=True)
 
 #Image Model
-class Image(models.Model):
+class DataHistoryImageImage(models.Model):
     image_id = models.AutoField(primary_key = True)
-    image_path = models.CharField(max_length =200)
+    image_path = models.ImageField(upload_to = 'data-insect-img',null=True)
     data = models.ForeignKey(Data,on_delete=models.CASCADE)
 
+class InsectGroup(models.Model):
+    group_id = models.IntegerField(primary_key=True)
+    group_name = models.CharField(max_length = 200, unique= True)
 
-
+class Insect(models.Model):
+    insect_id = models.AutoField(primary_key = True)
+    insect_name = models.CharField(max_length = 200,unique = True)
+    insect_desc = models.TextField(null=True)
+    insect_group = models.ForeignKey(InsectGroup,on_delete=models.CASCADE)
+    insect_image_path = models.ImageField(upload_to='insect-img',null=True)
