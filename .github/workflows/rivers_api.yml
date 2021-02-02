@@ -30,13 +30,13 @@ jobs:
       # Make directory to upload the test results
       - name: Make Directory for results
         run: |
-          cd Aquality2
+          cd reactNativeCIActionsTestingBranch/Aquality2
           mkdir -p testResults
 
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          cd Aquality2
+          cd reactNativeCIActionsTestingBranch/Aquality2
           newman run CCCMI.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
         #newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
 
