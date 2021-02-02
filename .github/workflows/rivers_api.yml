@@ -32,6 +32,7 @@ jobs:
         run: |
           cd Aquality2
           mkdir -p testResults
+          echo ${pwd}
 
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
