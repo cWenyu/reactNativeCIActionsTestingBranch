@@ -37,8 +37,8 @@ jobs:
       - name: Run POSTMAN collection
         run: |
           cd Aquality2
-          newman run "https://www.postman.com/collections/69a4df7d52a8dc4a21ee?apikey=PMAK-6005e35ba94109002948bce9-738d2cc68c655a72325fa656548b303683" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
-        # newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          newman run CCCMI.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+        #newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
 
       - name: Output the run Details
         uses: actions/upload-artifact@v2
