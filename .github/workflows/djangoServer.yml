@@ -40,6 +40,8 @@ jobs:
       - name: Install requirements # install application requirements
         run: |
           cd Aquality2
+          pip3 install django-filter
+          pip3 install djangorestframework
           pip3 install -r requirements.txt
 
       # - name: create .env file
