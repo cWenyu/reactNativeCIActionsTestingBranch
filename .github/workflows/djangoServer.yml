@@ -59,12 +59,12 @@ jobs:
           DEV_ENV_FILE: ${{ secrets.SERVER_ENV }}
         shell: bash
 
-      - name: Run Migrations # run migrations to create table in side car db container
+      - name: Run Migrations # run migrations to create table in side container
         run: |
           FILE=Aquality2/.env
           if [ -f "$FILE" ]; then
               cd Aquality2
-              python manage.py migrate
+        # python manage.py migrate
           else 
               echo "$FILE does not exist."
           fi
