@@ -1,6 +1,6 @@
 import json
 
-from Cython import typeof
+# from Cython import typeof
 from django.shortcuts import get_object_or_404, render
 from aquality_server.actions import *
 from rest_framework import viewsets
