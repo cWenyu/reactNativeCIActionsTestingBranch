@@ -64,7 +64,6 @@ jobs:
           FILE=Aquality2/.env
           if [ -f "$FILE" ]; then
               cd Aquality2
-        # python manage.py migrate
           else 
               echo "$FILE does not exist."
           fi
