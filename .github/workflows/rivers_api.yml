@@ -35,7 +35,13 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra
+          FOLDER=Aquality2/testResults
+          if [ -f "$FOLDER" ]; then
+              cd Aquality2
+              newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra
+          else 
+              echo "$FOLDER does not exist."
+          fi
         # newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra --reporter-htmlextra-export Aquality2/testResults/htmlreport.html --reporter-htmlextra-darkTheme  > Aquality2/testResults/runreport1.html
 
       - name: check testResults folder
