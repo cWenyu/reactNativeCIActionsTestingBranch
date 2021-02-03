@@ -35,6 +35,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
+          ls
           FOLDER=Aquality2/testResults
           if [ -f "$FOLDER" ]; then
               cd Aquality2
