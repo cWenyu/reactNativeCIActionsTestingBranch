@@ -35,7 +35,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}"
+          newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra
         # newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra --reporter-htmlextra-export Aquality2/testResults/htmlreport.html --reporter-htmlextra-darkTheme  > Aquality2/testResults/runreport1.html
 
       - name: check testResults folder
