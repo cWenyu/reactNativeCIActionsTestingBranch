@@ -55,5 +55,5 @@ jobs:
         with:
           name: RunReports
           path: Aquality2/testResults
-# Still in queue get a new report
+# all pass
 
