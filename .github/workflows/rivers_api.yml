@@ -30,14 +30,13 @@ jobs:
       # Make directory to upload the test results
       - name: Make Directory for results
         run: |
-          mkdir -p Aquality2/testResults/1.txt
+          mkdir -p Aquality2/testResults
 
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          ls Aquality2
-          FOLDER=Aquality2/testResults/1.txt
-          if [ -f "$FOLDER" ]; then
+          FOLDER=Aquality2/testResults
+          if [ -d "$FOLDER" ]; then
               cd Aquality2
               newman run "https://www.postman.com/collections/${{secrets.COLLECTIONID}}?apikey=${{secrets.POSTMANAPIKEY}}" -r htmlextra
           else 
